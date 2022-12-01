@@ -35,9 +35,10 @@ A simple scraper with a simple GUI that extracts some data about a specific prod
   - sorted by the highest rate, reviews number.
 
 - The product info: Name, Price, Rate, Reviews number(click on the row to open the link)
+- 
+- If you wanna seaerch for a new product you need to click on clear first.
 
-- You need to re-run the code each time you wanna search, otherwise the diagrams won't change.
-  - I couldn't fix this problem :(
+- If Amazon change anything in their DOM, this code might not work, it's need to be maintained. 
 
 ## THANK YOU!
 
