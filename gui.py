@@ -4,7 +4,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import webbrowser
 import AmazonScraper as asc
 
-sc = asc.AmazonScraper(10)#it scrapes up to 10 pages
+sc = asc.AmazonScraper(5)#it scrapes up to 5 pages
 min_price = []
 max_rate = []
 data_headings = ['Name', 'Price $', 'Rate', 'Reviews']
@@ -84,14 +84,17 @@ while True:
         urls = max_rate['Link']
         webbrowser.open(urls.iloc[elem])#Open the link for the row's product   
     elif event == 'CLEAR':#If user clicks clear button
+        sc.df.drop(df.index, inplace=True)#Clear all dataframes 
+        min_price.drop(df.index, inplace=True)
+        max_rate.drop(df.index, inplace=True)
         window['-PRICE-'].update(values=[])#Delete the tables' contents
         window['-RATE-'].update(values=[])
+        for canvas in [window['-CANVAS1-'].TKCanvas, window['-CANVAS2-'].TKCanvas]:
+            if canvas.children:
+                for child in canvas.winfo_children():
+                    child.destroy()
         window.refresh()
         
 window.close()        
         
-
-
-
-
 
