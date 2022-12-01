@@ -74,14 +74,10 @@ while True:
         product = values['-PRODUCT-']
         df = sc.scrape(product)#Start scraping
         draw_figs()
-        update_table()
-    elif event == '-PRICE-':#If user clicks on a row in the price table
-        elem = values['-PRICE-'][0]
-        urls = min_price['Link']
-        webbrowser.open(urls.iloc[elem])#Open the link for the row's product  
-    elif event == '-RATE-':#If user clicks on a row in the rate table
-        elem = values['-RATE-'][0]
-        urls = max_rate['Link']
+        update_table()  
+    elif event in ['-RATE-', '-PRICE-']:#If user clicks on a row in the table
+        elem = values[event][0]
+        urls = max_rate['Link'] if event == '-RATE-' else min_price['Link']
         webbrowser.open(urls.iloc[elem])#Open the link for the row's product   
     elif event == 'CLEAR':#If user clicks clear button
         sc.df.drop(df.index, inplace=True)#Clear all dataframes 
@@ -97,4 +93,3 @@ while True:
         
 window.close()        
         
-
