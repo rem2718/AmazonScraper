@@ -52,7 +52,7 @@ class AmazonScraper:
         name = res.find('span', attrs = {'class':"a-size-medium a-color-base a-text-normal"}).text
         #Extracting the price
         elem = res.find('span', attrs = {'class':"a-offscreen"})
-        price = float((elem.text)[1:]) if elem else None
+        price = float((elem.text).replace(',','')[1:]) if elem else None
         #Extracting the rate
         elem = res.find('span', attrs = {'class':"a-icon-alt"})
         rate = float(elem.text.split(' ')[0]) if elem else None
