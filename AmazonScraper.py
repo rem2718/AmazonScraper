@@ -52,14 +52,14 @@ class AmazonScraper:
         name = res.find('span', attrs = {'class':"a-size-medium a-color-base a-text-normal"}).text
         #Extracting the price
         elem = res.find('span', attrs = {'class':"a-offscreen"})
-        price = float((elem.text).replace(',','')[1:]) if elem else None
+        price = float((elem.text).replace([',', '(', ')'],'')[1:]) if elem else None
         #Extracting the rate
         elem = res.find('span', attrs = {'class':"a-icon-alt"})
         rate = float(elem.text.split(' ')[0]) if elem else None
         #Extracting the reviews number
         elem = res.find('span', attrs = {'class':"a-size-base puis-light-weight-text s-link-centralized-style"})
         elem = elem if elem else res.find('span', attrs = {'class':"a-size-base s-underline-text"}) 
-        reviews_no = int(elem.text.replace(',', '')) if elem else None
+        reviews_no = int(elem.text.replace([',', '(', ')'], '')) if elem else None
         # Extracting the link
         elem = res.find('a', attrs = {'class':"a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal"})
         href = "https://www.amazon.com" + elem['href'] if elem else None
